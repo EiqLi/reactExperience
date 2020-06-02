@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+
+function Example () {
+  const [ count, setCount ] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      document.title = `you cliceds ${ count } times`
+    },1000)
+  });
+  return (
+    <div>
+      <p> You clicked { count } times </p>
+      <button onClick={() => setCount(count + 1 )}>click</button>
+    </div>
+  )
+}
 
 function Square(props) {
   return (
@@ -122,6 +138,7 @@ class Game extends React.Component {
           <Board
           squares={current.squares} 
           onClick={(i) => this.handleClick(i)}/>
+          <Example />
         </div>
         <div className="game-info">
           <div>{status}</div>
