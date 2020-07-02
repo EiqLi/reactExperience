@@ -205,8 +205,8 @@ function Hello() {
 }
 
 //  class关键字创建组建
-// 使用class关键字创建的组建有自己的私有数据和生命周期函数
-// 使用function关键字创建的组建，只有props，没有自己的私有数据和生命函数
+// 使用class关键字创建的组建有自己的私有数据和生命周期函数 用的比较多
+// 使用function关键字创建的组建，只有props，没有自己的私有数据和生命函数  用的比较少
 class Movie extends React.Component {
   constructor() {
     super();
