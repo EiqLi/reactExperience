@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./jicheng.js"
 
 function Example() {
   const [count, setCount] = useState(0);
