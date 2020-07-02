@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "./jicheng.js"
+import "./jicheng.js";
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -204,14 +204,26 @@ function Hello() {
   return <div>sss</div>;
 }
 
-const dog = {
-  name: '大黄',
-  age: 3,
-  gender: '雄'
+//  class关键字创建组建
+class Movie extends React.Component {
+  // redder() 作用 渲染当前组建的虚拟DOM元素
+  render() {
+    // 必须返回合法的jsx
+  return <div>ssssssssssssssssssdd{this.props.name}</div>;
+  }
 }
-ReactDOM.render(<div>
-  <Hello name={dog.name}></Hello>
-  </div>, document.getElementById("bb"));
+const dog = {
+  name: "大黄",
+  age: 3,
+  gender: "雄",
+};
+ReactDOM.render(
+  <div>
+    <Hello name={dog.name}></Hello>
+    <Movie name="name"></Movie>
+  </div>,
+  document.getElementById("bb")
+);
 
 class Animal {
   // 这是类里面的构造器
@@ -221,46 +233,45 @@ class Animal {
   // class 关键字内部还是用原来的的配方实现，所以说 把我们class关键字成为作为语法糖
   constructor(name, age) {
     // 实例属性
-    this.name = name
-    this.age = age
+    this.name = name;
+    this.age = age;
   }
   // 在class内部 通过static修饰的就是静态属性
-  static info = 'eeee'
+  static info = "eeee";
   // 实例方法 用的比较多
   jiao() {
-    console.log('jiao')
+    console.log("jiao");
   }
   // 不怎么会用的静态方法
   static show = function () {
-    console.log('ssss')
-  }
+    console.log("ssss");
+  };
 }
 
-const a1 = new Animal('dahuang', 13)
-console.log(a1)
-a1.jiao()
+const a1 = new Animal("dahuang", 13);
+console.log(a1);
+a1.jiao();
 // eg： a1 通过new 出来的实例访问到的属性叫做实例属性
-
 
 // 静态属性
 // 通过构造函数直接访问到的属性
 function Person(name, age) {
-  this.name = name
-  this.age = age
+  this.name = name;
+  this.age = age;
 }
 // 实例方法 挂载在构造函数上
-Person.prototype.say = function() {
-  console.log('res')
-}
+Person.prototype.say = function () {
+  console.log("res");
+};
 // 静态方法 //
-Person.show =function () {
-  console.log('静态方法')
-}
+Person.show = function () {
+  console.log("静态方法");
+};
 // info 属性被直接挂载到构造函数 所以是静态属性
-Person.info = 'aaaaa'
-const p1 = new Person('ddddd',15)
-p1.say()
-console.log(p1)
+Person.info = "aaaaa";
+const p1 = new Person("ddddd", 15);
+p1.say();
+console.log(p1);
 // console.log(p1.info) // undefined
 // console.log(Person.info) // aaaaa
-console.log(Animal.info) // eeee  Animal的静态属性
+console.log(Animal.info); // eeee  Animal的静态属性
