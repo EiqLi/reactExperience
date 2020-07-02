@@ -216,6 +216,8 @@ class Animal {
   // 这是类里面的构造器
   // 每个类中都有一个构造器 如果我们程序员没有指定构造器 默认会又一个隐形的
   // 构造器作用 每当new这个类的时候必然会优先执行 构造器中的代码
+  // 在class的{}区间内 只能写构造器，静态方法 ，静态属性，和实例方法
+  // class 关键字内部还是用原来的的配方实现，所以说 把我们class关键字成为作为语法糖
   constructor(name, age) {
     // 实例属性
     this.name = name
@@ -223,10 +225,19 @@ class Animal {
   }
   // 在class内部 通过static修饰的就是静态属性
   static info = 'eeee'
+  // 实例方法 用的比较多
+  jiao() {
+    console.log('jiao')
+  }
+  // 不怎么会用的静态方法
+  static show = function () {
+    console.log('ssss')
+  }
 }
 
 const a1 = new Animal('dahuang', 13)
 console.log(a1)
+a1.jiao()
 // eg： a1 通过new 出来的实例访问到的属性叫做实例属性
 
 
@@ -236,9 +247,18 @@ function Person(name, age) {
   this.name = name
   this.age = age
 }
+// 实例方法 挂载在构造函数上
+Person.prototype.say = function() {
+  console.log('res')
+}
+// 静态方法 //
+Person.show =function () {
+  console.log('静态方法')
+}
 // info 属性被直接挂载到构造函数 所以是静态属性
 Person.info = 'aaaaa'
 const p1 = new Person('ddddd',15)
+p1.say()
 console.log(p1)
 // console.log(p1.info) // undefined
 // console.log(Person.info) // aaaaa
