@@ -2,28 +2,25 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
-function Example () {
-  const [ count, setCount ] = useState(0);
+function Example() {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
-      document.title = `you cliceds ${ count } times`
-    },1000)
+      document.title = `you cliceds ${count} times`;
+    }, 1000);
   });
   return (
     <div>
-      <p> You clicked { count } times </p>
-      <button onClick={() => setCount(count + 1 )}>click</button>
+      <p> You clicked {count} times </p>
+      <button onClick={() => setCount(count + 1)}>click</button>
     </div>
-  )
+  );
 }
 
 function Square(props) {
   return (
-    <button
-      className="square"
-      onClick={props.onClick}
-    >
+    <button className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -81,11 +78,13 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    history : [{
-      squares: Array(9).fill(null),
-    }],
-    stepNumber: 0,
-    xIsNext: true,
+      history: [
+        {
+          squares: Array(9).fill(null),
+        },
+      ],
+      stepNumber: 0,
+      xIsNext: true,
     };
   }
   handleClick(i) {
@@ -95,11 +94,13 @@ class Game extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? "X" : "O";
     this.setState({
-      history: history.concat([{
-        squares: squares
-      }]),
+      history: history.concat([
+        {
+          squares: squares,
+        },
+      ]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
@@ -107,7 +108,7 @@ class Game extends React.Component {
   jumpTo(step) {
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      xIsNext: step % 2 === 0,
     });
   }
   render() {
@@ -116,9 +117,7 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+      const desc = move ? "Go to move #" + move : "Go to game start";
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -128,16 +127,17 @@ class Game extends React.Component {
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = "Winner: " + winner;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
     return (
       <div className="game">
         <div className="game-board">
           <Board
-          squares={current.squares} 
-          onClick={(i) => this.handleClick(i)}/>
+            squares={current.squares}
+            onClick={(i) => this.handleClick(i)}
+          />
           <Example />
         </div>
         <div className="game-info">
@@ -169,7 +169,77 @@ function calculateWinner(squares) {
   return null;
 }
 
-
 // ========================================
 
 ReactDOM.render(<Game />, document.getElementById("root"));
+
+const myh1 = React.createElement(
+  "h1",
+  { id: "myh1", title: "this is a h1" },
+  "zheshiyigedadadeh1"
+);
+const mydiv = React.createElement("div", null, "这是一个div", myh1);
+ReactDOM.render(mydiv, document.getElementById("aa"));
+
+// 渲染页面上的dom结构，最好的方式就是写html代码
+const mydiv1 = (
+  <div id="mmm" title="ssss">
+    aaaaaaaaaaaaaaaaa
+  </div>
+);
+let a = 10;
+let str = "国安法";
+ReactDOM.render(
+  <div>
+    {str}
+    {a}
+  </div>,
+  document.getElementById("bb")
+);
+
+// 第一种创建组建的方式
+function Hello() {
+  // 如果在一个组件中return一个null 则表示这个组件是空的 什么也不会渲染
+  return <div>sss</div>;
+}
+
+const dog = {
+  name: '大黄',
+  age: 3,
+  gender: '雄'
+}
+ReactDOM.render(<div>
+  <Hello name={dog.name}></Hello>
+  </div>, document.getElementById("bb"));
+
+class Animal {
+  // 这是类里面的构造器
+  // 每个类中都有一个构造器 如果我们程序员没有指定构造器 默认会又一个隐形的
+  // 构造器作用 每当new这个类的时候必然会优先执行 构造器中的代码
+  constructor(name, age) {
+    // 实例属性
+    this.name = name
+    this.age = age
+  }
+  // 在class内部 通过static修饰的就是静态属性
+  static info = 'eeee'
+}
+
+const a1 = new Animal('dahuang', 13)
+console.log(a1)
+// eg： a1 通过new 出来的实例访问到的属性叫做实例属性
+
+
+// 静态属性
+// 通过构造函数直接访问到的属性
+function Person(name, age) {
+  this.name = name
+  this.age = age
+}
+// info 属性被直接挂载到构造函数 所以是静态属性
+Person.info = 'aaaaa'
+const p1 = new Person('ddddd',15)
+console.log(p1)
+// console.log(p1.info) // undefined
+// console.log(Person.info) // aaaaa
+console.log(Animal.info) // eeee  Animal的静态属性
