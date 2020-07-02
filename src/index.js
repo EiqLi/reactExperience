@@ -205,11 +205,24 @@ function Hello() {
 }
 
 //  class关键字创建组建
+// 使用class关键字创建的组建有自己的私有数据和生命周期函数
+// 使用function关键字创建的组建，只有props，没有自己的私有数据和生命函数
 class Movie extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      msg: "hahahahahahah",
+    };
+  }
   // redder() 作用 渲染当前组建的虚拟DOM元素
   render() {
     // 必须返回合法的jsx
-  return <div>ssssssssssssssssssdd{this.props.name}</div>;
+    return (
+      <div>
+        ssssssssssssssssssdd{this.props.name}
+        <h3>{this.state.msg}</h3>
+      </div>
+    );
   }
 }
 const dog = {
